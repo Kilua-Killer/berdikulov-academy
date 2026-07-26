@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berdikulov Academy — ЕГЭ Информатика 80+</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+  :root {
+    --bg: #0a0a0a;
+    --bg-card: #111111;
+    --bg-hover: #1a1a1a;
+    --border: #222222;
+    --gold: #C8A96E;
+    --gold-soft: rgba(200,169,110,0.12);
+    --gold-mid: rgba(200,169,110,0.25);
+    --text: #ffffff;
+    --text-secondary: #a0a0a0;
+    --text-muted: #666666;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 9999px;
+    --shadow: 0 8px 32px rgba(0,0,0,0.5);
+    --t-fast: 150ms;
+    --ease-out: cubic-bezier(0.16,1,0.3,1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .container { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+  section { padding: 72px 0; }
+  .section-title { font-size: 32px; font-weight: 500; line-height: 1.15; margin-bottom: 10px; text-align: center; letter-spacing: -0.02em; }
+  .section-subtitle { font-size: 16px; color: var(--text-secondary); text-align: center; margin-bottom: 44px; }
+
+  /* Logo header */
+  .logo-bar { text-align: center; padding: 28px 0 0; }
+  .logo-text { font-size: 13px; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); }
+  .logo-line { width: 40px; height: 1px; background: var(--gold); margin: 10px auto 0; opacity: 0.5; }
+
+  /* Hero */
+  .hero { padding: 48px 0 64px; text-align: center; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--gold); background: var(--gold-soft); border: 1px solid var(--gold-mid); padding: 7px 16px; border-radius: var(--radius-full); margin-bottom: 28px; }
+  .hero h1 { font-size: 48px; font-weight: 500; line-height: 1.05; margin-bottom: 18px; letter-spacing: -0.03em; }
+  .hero h1 span { color: var(--gold); }
+  .hero p { font-size: 18px; color: var(--text-secondary); max-width: 520px; margin: 0 auto 36px; line-height: 1.55; }
+  .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 500; padding: 13px 28px; border-radius: var(--radius-md); border: none; cursor: pointer; text-decoration: none; transition: all var(--t-fast) var(--ease-out); letter-spacing: 0.01em; }
+  .btn-primary { background: var(--gold); color: var(--bg); }
+  .btn-primary:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 4px 20px rgba(200,169,110,0.25); }
+  .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-stats { display: flex; gap: 48px; justify-content: center; margin-top: 52px; flex-wrap: wrap; }
+  .stat { text-align: center; }
+  .stat-num { font-size: 36px; font-weight: 500; line-height: 1; color: var(--gold); }
+  .stat-label { font-size: 13px; color: var(--text-muted); margin-top: 6px; letter-spacing: 0.05em; text-transform: uppercase; }
+
+  /* Features */
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .feature-card { padding: 28px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg-card); transition: all var(--t-fast) var(--ease-out); }
+  .feature-card:hover { border-color: var(--gold-mid); transform: translateY(-3px); box-shadow: var(--shadow); }
+  .feature-icon { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md); background: var(--gold-soft); color: var(--gold); margin-bottom: 16px; }
+  .feature-title { font-size: 16px; font-weight: 500; margin-bottom: 8px; }
+  .feature-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.55; }
+
+  /* Program */
+  .program-list { display: flex; flex-direction: column; gap: 10px; }
+  .program-item { display: flex; align-items: center; gap: 16px; padding: 16px 20px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--bg-card); transition: all var(--t-fast) var(--ease-out); }
+  .program-item:hover { border-color: var(--gold-mid); background: var(--bg-hover); }
+  .program-num { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-full); background: var(--gold-soft); color: var(--gold); font-size: 13px; font-weight: 600; flex-shrink: 0; }
+  .program-text { font-size: 15px; }
+  .program-tag { margin-left: auto; font-size: 12px; padding: 4px 12px; border-radius: var(--radius-full); background: var(--gold-soft); color: var(--gold); font-weight: 500; white-space: nowrap; }
+
+  /* Steps */
+  .steps { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+  .step { flex: 1; min-width: 240px; max-width: 280px; text-align: center; padding: 32px 24px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg-card); position: relative; }
+  .step-num { position: absolute; top: -16px; left: 50%; transform: translateX(-50%); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-full); background: var(--gold); color: var(--bg); font-size: 13px; font-weight: 600; }
+  .step-icon { margin-bottom: 16px; color: var(--gold); }
+  .step-title { font-size: 17px; font-weight: 500; margin-bottom: 8px; }
+  .step-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.5; }
+
+  /* Reviews */
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .review-card { padding: 28px; border: 1px solid var(--border); border-radius: var(--radius-lg); background: var(--bg-card); }
+  .review-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .review-avatar { width: 42px; height: 42px; border-radius: var(--radius-full); background: var(--gold-soft); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; color: var(--gold); }
+  .review-name { font-size: 15px; font-weight: 500; }
+  .review-meta { font-size: 12px; color: var(--text-muted); }
+  .review-stars { display: flex; gap: 3px; margin-bottom: 12px; }
+  .review-stars svg { width: 14px; height: 14px; color: var(--gold); }
+  .review-text { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+  .review-result { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border); font-size: 13px; font-weight: 500; color: var(--gold); display: flex; align-items: center; gap: 6px; }
+
+  /* FAQ */
+  .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+  .faq-item { border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; background: var(--bg-card); }
+  .faq-q { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 20px; background: transparent; border: none; font-size: 15px; font-weight: 500; color: var(--text); cursor: pointer; text-align: left; }
+  .faq-q svg { width: 18px; height: 18px; color: var(--text-muted); transition: transform var(--t-fast) var(--ease-out); flex-shrink: 0; }
+  .faq-item.open .faq-q svg { transform: rotate(180deg); color: var(--gold); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 300ms var(--ease-out); }
+  .faq-a-inner { padding: 0 20px 18px; font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+  .faq-item.open .faq-a { max-height: 220px; }
+
+  /* CTA */
+  .cta { text-align: center; padding: 64px 28px; border: 1px solid var(--border); border-radius: var(--radius-xl); background: var(--bg-card); margin: 0 20px; }
+  .cta h2 { font-size: 32px; font-weight: 500; margin-bottom: 12px; }
+  .cta p { font-size: 16px; color: var(--text-secondary); margin-bottom: 28px; }
+  .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  /* Contacts */
+  .contacts-grid { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .contact-card { display: flex; align-items: center; gap: 14px; padding: 18px 22px; border: 1px solid var(--border); border-radius: var(--radius-md); text-decoration: none; color: var(--text); background: var(--bg-card); transition: all var(--t-fast) var(--ease-out); min-width: 240px; }
+  .contact-card:hover { border-color: var(--gold-mid); background: var(--bg-hover); }
+  .contact-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md); background: var(--gold-soft); color: var(--gold); }
+  .contact-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .contact-value { font-size: 15px; font-weight: 500; }
+
+  /* Footer */
+  .footer { text-align: center; padding: 40px 0; border-top: 1px solid var(--border); }
+  .footer p { font-size: 12px; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* Animations */
+  .fade-in { opacity: 0; transform: translateY(20px); animation: fadeInUp 0.7s var(--ease-out) forwards; }
+  .fade-in-d1 { animation-delay: 0.1s; }
+  .fade-in-d2 { animation-delay: 0.2s; }
+  .fade-in-d3 { animation-delay: 0.35s; }
+  @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+  /* Gold glow accent */
+  .gold-glow { position: relative; }
+  .gold-glow::before { content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 300px; height: 300px; background: radial-gradient(circle, rgba(200,169,110,0.08) 0%, transparent 70%); pointer-events: none; }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 34px; }
+    .hero p { font-size: 16px; }
+    .section-title { font-size: 26px; }
+    section { padding: 52px 0; }
+    .step { min-width: 100%; max-width: 100%; }
+    .hero-stats { gap: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="logo-bar">
+  <div class="logo-text">Berdikulov Academy</div>
+  <div class="logo-line"></div>
+</div>
+
+<!-- Hero -->
+<section class="hero gold-glow">
+  <div class="container">
+    <div class="hero-badge fade-in">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.3 5.9c.4-.4 1-.4 1.3 0 .3.4.3.9 0 1.3L10.2 17.6c-.4.4-.9.4-1.3 0L3.4 12.2c-.4-.4-.4-.9 0-1.3.4-.3.9-.3 1.3 0l4.8 4.8 9.8-9.8z"/></svg>
+      Подготовка к ЕГЭ 2027
+    </div>
+    <h1 class="fade-in fade-in-d1">ЕГЭ Информатика<br><span>80+ баллов</span></h1>
+    <p class="fade-in fade-in-d2">Понятно, без зубрёжки, по системе. Индивидуальные занятия и курсы, которые реально работают.</p>
+    <div class="hero-btns fade-in fade-in-d3">
+      <a href="https://t.me/daniel6590" target="_blank" class="btn btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21.4 3.3c.4-.1.8.1.9.5.1.3 0 .7-.3.9L3.5 12.1c-.4.2-.8 0-1-.3-.2-.4 0-.8.3-1l7-4.5 5.5 5.5 1.4-7 5.7-1.5zM9.9 6.3l5.5 5.5-8-2 2.5-3.5z"/></svg>
+        Записаться в Telegram
+      </a>
+      <a href="https://www.instagram.com/berdikulov.academy" target="_blank" class="btn btn-secondary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c2.7 0 3 .0 4.1.1 1.1.1 1.8.2 2.4.5.7.3 1.2.6 1.8 1.2.5.5.9 1.1 1.1 1.8.2.6.4 1.3.5 2.4.1 1.1.1 1.4.1 4.1s0 3-.1 4.1c-.1 1.1-.2 1.8-.5 2.4-.3.7-.6 1.3-1.1 1.8-.5.5-1.1.9-1.8 1.1-.6.2-1.3.4-2.4.5-1.1.1-1.4.1-4.1.1s-3 0-4.1-.1c-1.1-.1-1.8-.2-2.4-.5-.7-.3-1.3-.6-1.8-1.1-.5-.5-.9-1.1-1.1-1.8-.2-.6-.4-1.3-.5-2.4C2 15.1 2 14.7 2 12s0-3 .1-4.1c.1-1.1.2-1.8.5-2.4.3-.7.6-1.3 1.2-1.8.5-.5 1.1-.9 1.8-1.1.6-.2 1.3-.4 2.4-.5C9 2 9.3 2 12 2zm0 5c-1.3 0-2.6.5-3.5 1.5C7.5 9.4 7 10.7 7 12s.5 2.6 1.5 3.5c.9.9 2.2 1.5 3.5 1.5s2.6-.5 3.5-1.5c.9-.9 1.5-2.2 1.5-3.5s-.5-2.6-1.5-3.5C14.6 7.5 13.3 7 12 7zm6.5-1.2c0-.3-.1-.7-.4-.9-.2-.2-.6-.4-.9-.4-.3 0-.7.1-.9.4-.2.2-.4.6-.4.9s.1.7.4.9c.2.2.6.4.9.4.3 0 .7-.1.9-.4.2-.2.4-.5.4-.9zM12 9c.8 0 1.6.3 2.1.9.6.6.9 1.3.9 2.1s-.3 1.6-.9 2.1c-.6.6-1.3.9-2.1.9s-1.6-.3-2.1-.9c-.6-.6-.9-1.3-.9-2.1s.3-1.6.9-2.1C10.4 9.3 11.2 9 12 9z"/></svg>
+        Instagram
+      </a>
+    </div>
+    <div class="hero-stats fade-in fade-in-d3">
+      <div class="stat"><div class="stat-num">80+</div><div class="stat-label">Средний балл</div></div>
+      <div class="stat"><div class="stat-num">27</div><div class="stat-label">Задач разобрано</div></div>
+      <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Индивидуально</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Почему ученики выбирают нас</h2>
+    <p class="section-subtitle">Три кита успешной подготовки к ЕГЭ</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 15.1c.4 0 .8.4.8.8s-.3.8-.7.8l-9 1c-.4 0-.8-.3-.8-.8 0-.4.3-.8.7-.8l7-1-7-1c-.4 0-.8-.4-.8-.8 0-.4.3-.8.7-.8l9 1.9zM7.5 8.9c-.4 0-.8-.4-.8-.8s.3-.8.7-.8l9-1c.4 0 .8.3.8.8 0 .4-.3.8-.7.8l-7 1 7 1c.4 0 .8.4.8.8 0 .4-.3.8-.7.8l-9-1.9z"/></svg>
+        </div>
+        <div class="feature-title">Понятная подача</div>
+        <div class="feature-desc">Сложные темы объясняю простым языком. Никакой воды — только то, что реально нужно на экзамене.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4L10 14.2l7.6-7.6L19 8l-9 9z"/></svg>
+        </div>
+        <div class="feature-title">Проверенная система</div>
+        <div class="feature-desc">Пошаговая методика: от базы до сложных задач. Каждый ученик идёт по своему плану.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm-1-13h2v6h-2V7zm0 8h2v2h-2v-2z"/></svg>
+        </div>
+        <div class="feature-title">Реальная практика</div>
+        <div class="feature-desc">Решаем задачи из прошлых лет, тренируемся на таймере. На экзамене ничто не застанет врасплох.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4C2.9 2 2 2.9 2 4v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+        </div>
+        <div class="feature-title">Обратная связь 24/7</div>
+        <div class="feature-desc">Проверяю домашку, отвечаю на вопросы в Telegram. Ты никогда не останешься один на один с трудной задачей.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Program -->
+<section style="background: var(--bg-card);">
+  <div class="container">
+    <h2 class="section-title">Что входит в программу</h2>
+    <p class="section-subtitle">Все 27 задач ЕГЭ — от теории до автоматизма</p>
+    <div class="program-list">
+      <div class="program-item"><div class="program-num">1</div><div class="program-text">Логика и таблицы истинности</div><div class="program-tag">2 задача</div></div>
+      <div class="program-item"><div class="program-num">2</div><div class="program-text">Системы счисления и кодирование</div><div class="program-tag">1, 4, 5 задачи</div></div>
+      <div class="program-item"><div class="program-num">3</div><div class="program-text">Алгоритмы и исполнители</div><div class="program-tag">6, 12 задачи</div></div>
+      <div class="program-item"><div class="program-num">4</div><div class="program-text">Графы, деревья, файловая система</div><div class="program-tag">3, 10 задачи</div></div>
+      <div class="program-item"><div class="program-num">5</div><div class="program-text">Электронные таблицы Excel</div><div class="program-tag">9 задача</div></div>
+      <div class="program-item"><div class="program-num">6</div><div class="program-text">Базы данных и поисковые запросы</div><div class="program-tag">17 задача</div></div>
+      <div class="program-item"><div class="program-num">7</div><div class="program-text">Программирование на Python</div><div class="program-tag">24–27 задачи</div></div>
+      <div class="program-item"><div class="program-num">8</div><div class="program-text">Пробники и разбор ошибок</div><div class="program-tag">Каждые 2 недели</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Steps -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Как начать заниматься</h2>
+    <p class="section-subtitle">Три простых шага до первого результата</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4C2.9 2 2 2.9 2 4v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+        </div>
+        <div class="step-title">Напиши «СТАРТ»</div>
+        <div class="step-desc">В Telegram или Instagram. Договоримся о времени бесплатного пробного урока.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm-1-13h2v6h-2V7zm0 8h2v2h-2v-2z"/></svg>
+        </div>
+        <div class="step-title">Пробный урок</div>
+        <div class="step-desc">30–40 минут: разберём твои пробелы, составим план подготовки, покажу методику.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4L10 14.2l7.6-7.6L19 8l-9 9z"/></svg>
+        </div>
+        <div class="step-title">Системная работа</div>
+        <div class="step-desc">Регулярные занятия, домашка, пробники. Идём к цели — 80+ баллов на ЕГЭ.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reviews -->
+<section style="background: var(--bg-card);">
+  <div class="container">
+    <h2 class="section-title">Истории учеников</h2>
+    <p class="section-subtitle">Реальные результаты, а не пустые обещания</p>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">К</div>
+          <div><div class="review-name">Кирилл</div><div class="review-meta">11 класс, 2.5 месяца</div></div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3l6.2 3.7-1.6-7L22 9.2l-7.2-.6L12 2 9.2 8.6 2 9.2l5.5 4.8-1.7 7 6.2-3.7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3l6.2 3.7-1.6-7L22 9.2l-7.2-.6L12 2 9.2 8.6 2 9.2l5.5 4.8-1.7 7 6.2-3.7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3l6.2 3.7-1.6-7L22 9.2l-7.2-.6L12 2 9.2 8.6 2 9.2l5.5 4.8-1.7 7 6.2-3.7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3l6.2 3.7-1.6-7L22 9.2l-7.2-.6L12 2 9.2 8.6 2 9.2l5.5 4.8-1.7 7 6.2-3.7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3l6.2 3.7-1.6-7L22 9.2l-7.2-.6L12 2 9.2 8.6 2 9.2l5.5 4.8-1.7 7 6.2-3.7z"/></svg>
+        </div>
+        <div class="review-text">«Думал, информатика — не моё. В школе ничего не понимал, боялся программирования. За 2.5 месяца поднялся с 48 до 79 баллов. Главное — система, а не зубрёжка.»</div>
+        <div class="review-result">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4L10 14.2l7.6-7.6L19 8l-9 9z"/></svg>
+          48 → 79 баллов
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">А</div>
+          <div><div class="review-name">Артём</div><div class="review-meta">11 класс, 3 месяца</div></div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3l6.2 3.7-1.6-7L22 9.2l-7.2-.6L12 2 9.2 8.6 2 9.2l5.5 4.8-1.7 7 6.2-3.7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3l6.2 3.7-1.6-7L22 9.2l-7.2-.6L12 2 9.2 8.6 2 9.2l5.5 4.8-1.7 7 6.2-3.7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3l6.2 3.7-1.6-7L22 9.2l-7.2-.6L12 2 9.2 8.6 2 9.2l5.5 4.8-1.7 7 6.2-3.7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3l6.2 3.7-1.6-7L22 9.2l-7.2-.6L12 2 9.2 8.6 2 9.2l5.5 4.8-1.7 7 6.2-3.7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3l6.2 3.7-1.6-7L22 9.2l-7.2-.6L12 2 9.2 8.6 2 9.2l5.5 4.8-1.7 7 6.2-3.7z"/></svg>
+        </div>
+        <div class="review-text">«27 задача казалась невыполнимой. Научился решать её шаблоном — теперь закрываю за 15 минут. Объясняет доходчиво, никакой воды.»</div>
+        <div class="review-result">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4L10 14.2l7.6-7.6L19 8l-9 9z"/></svg>
+          52 → 81 балл
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-header">
+          <div class="review-avatar">М</div>
+          <div><div class="review-name">Мария</div><div class="review-meta">Родитель, 11 класс</div></div>
+        </div>
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3l6.2 3.7-1.6-7L22 9.2l-7.2-.6L12 2 9.2 8.6 2 9.2l5.5 4.8-1.7 7 6.2-3.7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3l6.2 3.7-1.6-7L22 9.2l-7.2-.6L12 2 9.2 8.6 2 9.2l5.5 4.8-1.7 7 6.2-3.7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3l6.2 3.7-1.6-7L22 9.2l-7.2-.6L12 2 9.2 8.6 2 9.2l5.5 4.8-1.7 7 6.2-3.7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3l6.2 3.7-1.6-7L22 9.2l-7.2-.6L12 2 9.2 8.6 2 9.2l5.5 4.8-1.7 7 6.2-3.7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.3l6.2 3.7-1.6-7L22 9.2l-7.2-.6L12 2 9.2 8.6 2 9.2l5.5 4.8-1.7 7 6.2-3.7z"/></svg>
+        </div>
+        <div class="review-text">«Сын перестал бояться информатики. Занятия проходят онлайн, всё удобно. Вижу прогресс по пробникам — рост стабильный.»</div>
+        <div class="review-result">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.4-1.4L10 14.2l7.6-7.6L19 8l-9 9z"/></svg>
+          Рост +25 баллов
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <h2 class="section-title">Частые вопросы</h2>
+    <p class="section-subtitle">Всё, что нужно знать перед стартом</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Сколько длится одно занятие?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5H7z"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Стандартное занятие — 60 минут. Пробный урок — 30–40 минут. Для интенсивной подготовки перед экзаменом возможны занятия по 90 минут.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Нужен ли опыт в программировании?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5H7z"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Нет. Начинаем с нуля. Python — простой язык, а моя задача сделать его понятным даже для тех, кто никогда не писал код.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Как проходят занятия?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5H7z"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Онлайн через Zoom или Google Meet. Делюсь экраном, пишу код в реальном времени, даю домашку в Telegram-боте. Всё записывается — можно пересмотреть.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Какой график занятий?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5H7z"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Гибкий. Обычно 2 занятия в неделю, но подстраиваюсь под твой график школы и кружков. Главное — регулярность, а не количество часов.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Сколько стоит?
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5H7z"/></svg>
+        </button>
+        <div class="faq-a"><div class="faq-a-inner">Индивидуальное занятие — от 1500₽/час. Групповой курс — от 5000₽/мес. Пробный урок — бесплатно. Точную стоимость обсуждаем после диагностики.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="container">
+    <div class="cta">
+      <h2>Готов к 80+ баллам?</h2>
+      <p>Запишись на бесплатный пробный урок прямо сейчас. Без обязательств, без спама.</p>
+      <div class="cta-btns">
+        <a href="https://t.me/daniel6590" target="_blank" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21.4 3.3c.4-.1.8.1.9.5.1.3 0 .7-.3.9L3.5 12.1c-.4.2-.8 0-1-.3-.2-.4 0-.8.3-1l7-4.5 5.5 5.5 1.4-7 5.7-1.5zM9.9 6.3l5.5 5.5-8-2 2.5-3.5z"/></svg>
+          Написать в Telegram
+        </a>
+        <a href="https://wa.me/79621265177" target="_blank" class="btn btn-secondary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5l-.9 4.5L7 20.6c1.5.9 3.2 1.4 5 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 1 1.4-3.5-.2-.3c-.9-1.4-1.3-3-1.3-4.7 0-4.5 3.5-8 8-8s8 3.5 8 8-3.5 8-8 8zm4-6.4c-.2-.1-1.1-.5-1.3-.6-.2-.1-.3-.1-.4.1-.1.2-.3.5-.4.6-.1.1-.2.1-.4 0-.2-.1-.8-.3-1.5-.9-.6-.5-.9-1.1-1-1.3-.1-.2 0-.3.1-.4.1-.1.2-.2.3-.3.1-.1.1-.2.2-.3.1-.1 0-.2 0-.3-.1-.1-.4-1-.5-1.3-.2-.4-.3-.3-.4-.3-.1 0-.2 0-.3 0-.1 0-.3 0-.4.2-.2.2-.6.6-.6 1.4 0 .8.6 1.6.7 1.7.1.1 1.2 1.8 2.9 2.5.4.2.7.3 1 .4.4.1.8.1 1.1 0 .3 0 1-.4 1.1-.8.1-.4.1-.7.1-.8 0-.1-.1-.2-.3-.2l.2.8z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contacts -->
+<section style="background: var(--bg-card);">
+  <div class="container">
+    <h2 class="section-title">Контакты</h2>
+    <p class="section-subtitle">Выбирай удобный способ связи</p>
+    <div class="contacts-grid">
+      <a href="https://t.me/daniel6590" target="_blank" class="contact-card">
+        <div class="contact-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21.4 3.3c.4-.1.8.1.9.5.1.3 0 .7-.3.9L3.5 12.1c-.4.2-.8 0-1-.3-.2-.4 0-.8.3-1l7-4.5 5.5 5.5 1.4-7 5.7-1.5zM9.9 6.3l5.5 5.5-8-2 2.5-3.5z"/></svg>
+        </div>
+        <div><div class="contact-label">Telegram</div><div class="contact-value">@daniel6590</div></div>
+      </a>
+      <a href="https://www.instagram.com/berdikulov.academy" target="_blank" class="contact-card">
+        <div class="contact-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c2.7 0 3 .0 4.1.1 1.1.1 1.8.2 2.4.5.7.3 1.2.6 1.8 1.2.5.5.9 1.1 1.1 1.8.2.6.4 1.3.5 2.4.1 1.1.1 1.4.1 4.1s0 3-.1 4.1c-.1 1.1-.2 1.8-.5 2.4-.3.7-.6 1.3-1.1 1.8-.5.5-1.1.9-1.8 1.1-.6.2-1.3.4-2.4.5-1.1.1-1.4.1-4.1.1s-3 0-4.1-.1c-1.1-.1-1.8-.2-2.4-.5-.7-.3-1.3-.6-1.8-1.1-.5-.5-.9-1.1-1.1-1.8-.2-.6-.4-1.3-.5-2.4C2 15.1 2 14.7 2 12s0-3 .1-4.1c.1-1.1.2-1.8.5-2.4.3-.7.6-1.3 1.2-1.8.5-.5 1.1-.9 1.8-1.1.6-.2 1.3-.4 2.4-.5C9 2 9.3 2 12 2zm0 5c-1.3 0-2.6.5-3.5 1.5C7.5 9.4 7 10.7 7 12s.5 2.6 1.5 3.5c.9.9 2.2 1.5 3.5 1.5s2.6-.5 3.5-1.5c.9-.9 1.5-2.2 1.5-3.5s-.5-2.6-1.5-3.5C14.6 7.5 13.3 7 12 7zm6.5-1.2c0-.3-.1-.7-.4-.9-.2-.2-.6-.4-.9-.4-.3 0-.7.1-.9.4-.2.2-.4.6-.4.9s.1.7.4.9c.2.2.6.4.9.4.3 0 .7-.1.9-.4.2-.2.4-.5.4-.9zM12 9c.8 0 1.6.3 2.1.9.6.6.9 1.3.9 2.1s-.3 1.6-.9 2.1c-.6.6-1.3.9-2.1.9s-1.6-.3-2.1-.9c-.6-.6-.9-1.3-.9-2.1s.3-1.6.9-2.1C10.4 9.3 11.2 9 12 9z"/></svg>
+        </div>
+        <div><div class="contact-label">Instagram</div><div class="contact-value">@berdikulov.academy</div></div>
+      </a>
+      <a href="https://wa.me/79621265177" target="_blank" class="contact-card">
+        <div class="contact-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5l-.9 4.5L7 20.6c1.5.9 3.2 1.4 5 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 1 1.4-3.5-.2-.3c-.9-1.4-1.3-3-1.3-4.7 0-4.5 3.5-8 8-8s8 3.5 8 8-3.5 8-8 8zm4-6.4c-.2-.1-1.1-.5-1.3-.6-.2-.1-.3-.1-.4.1-.1.2-.3.5-.4.6-.1.1-.2.1-.4 0-.2-.1-.8-.3-1.5-.9-.6-.5-.9-1.1-1-1.3-.1-.2 0-.3.1-.4.1-.1.2-.2.3-.3.1-.1.1-.2.2-.3.1-.1 0-.2 0-.3-.1-.1-.4-1-.5-1.3-.2-.4-.3-.3-.4-.3-.1 0-.2 0-.3 0-.1 0-.3 0-.4.2-.2.2-.6.6-.6 1.4 0 .8.6 1.6.7 1.7.1.1 1.2 1.8 2.9 2.5.4.2.7.3 1 .4.4.1.8.1 1.1 0 .3 0 1-.4 1.1-.8.1-.4.1-.7.1-.8 0-.1-.1-.2-.3-.2l.2.8z"/></svg>
+        </div>
+        <div><div class="contact-label">WhatsApp</div><div class="contact-value">+7 962 126 51 77</div></div>
+      </a>
+      <a href="tel:+79621149326" class="contact-card">
+        <div class="contact-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.6 5 6.4 6.4l2.1-2.1c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1v3.5c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .7-.2 1l-2.3 2.3z"/></svg>
+        </div>
+        <div><div class="contact-label">Звонок</div><div class="contact-value">+7 962 114 93 26</div></div>
+      </a>
+      <a href="https://t.me/berdikulov_academy" target="_blank" class="contact-card">
+        <div class="contact-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21.4 3.3c.4-.1.8.1.9.5.1.3 0 .7-.3.9L3.5 12.1c-.4.2-.8 0-1-.3-.2-.4 0-.8.3-1l7-4.5 5.5 5.5 1.4-7 5.7-1.5zM9.9 6.3l5.5 5.5-8-2 2.5-3.5z"/></svg>
+        </div>
+        <div><div class="contact-label">Telegram канал</div><div class="contact-value">@berdikulov_academy</div></div>
+      </a>
+      <a href="https://t.me/max_berdikulov" target="_blank" class="contact-card">
+        <div class="contact-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 3c1.7 0 3.1.6 4.2 1.8C17.4 7.9 18 9.3 18 11s-.6 3.1-1.8 4.2C15.1 16.4 13.7 17 12 17s-3.1-.6-4.2-1.8C6.6 14.1 6 12.7 6 11s.6-3.1 1.8-4.2C8.9 5.6 10.3 5 12 5zm0 1.5c-1.2 0-2.2.4-3 1.2-.8.8-1.2 1.8-1.2 3s.4 2.2 1.2 3c.8.8 1.8 1.2 3 1.2s2.2-.4 3-1.2c.8-.8 1.2-1.8 1.2-3s-.4-2.2-1.2-3c-.8-.8-1.8-1.2-3-1.2z"/></svg>
+        </div>
+        <div><div class="contact-label">MAX</div><div class="contact-value">+7 962 126 51 77</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="container">
+    <p>Berdikulov Academy · ЕГЭ Информатика · 2026</p>
+  </div>
+</div>
+
+<script>
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+
+</body>
+</html>
